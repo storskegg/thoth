@@ -41,15 +41,15 @@ likely use something like Leptos with whatever CSS framework seems in vogue. (Fo
 
 Without their exceptional scholarship and contributions to the field of Egyptology, this project would not be possible.
 Myself and all contemporary scholars (academic and armchair alike) owe a great deal to the following contributors to the
-field (alphabetical by last name):
+field (alphabetically):
 
-- James P. Allen
-- Joris F. Borghouts
-- Sir Alan H. Gardiner
-- Erik Hornung
-- Robert K. Ritner
+- Allen, James P.
+- Borghouts, Joris F.
+- Gardiner, Sir Alan H.
+- Hornung, Erik
+- Ritner, Robert K.
 
-This list is by no means comprehensive, but does consist of the majority of authors on the subject on my shelves.
+This list is by no means comprehensive, but it does represent the bulk of authors on the subject on my shelves.
 
 ### Digital Assets
 
