@@ -5,6 +5,21 @@
 OPTION IMPORT;
 
 -- ------------------------------
+-- TABLE: dict_era
+-- ------------------------------
+
+DEFINE TABLE dict_era TYPE NORMAL SCHEMAFULL PERMISSIONS NONE;
+
+DEFINE FIELD name ON dict_era TYPE string PERMISSIONS FULL;
+
+
+
+-- ------------------------------
+-- TABLE DATA: dict_era
+-- ------------------------------
+
+
+-- ------------------------------
 -- TABLE: dict_grammar
 -- ------------------------------
 
@@ -20,12 +35,30 @@ DEFINE FIELD type ON dict_grammar TYPE string PERMISSIONS FULL;
 
 
 -- ------------------------------
+-- TABLE: dict_language
+-- ------------------------------
+
+DEFINE TABLE dict_language TYPE NORMAL SCHEMAFULL PERMISSIONS NONE;
+
+DEFINE FIELD name ON dict_language TYPE string PERMISSIONS FULL;
+
+
+
+-- ------------------------------
+-- TABLE DATA: dict_language
+-- ------------------------------
+
+
+-- ------------------------------
 -- TABLE: dict_translated_as
 -- ------------------------------
 
 DEFINE TABLE dict_translated_as TYPE RELATION IN dict_wordlist_egyptian OUT dict_wordlist_en | dict_wordlist_fr | dict_wordlist_de SCHEMAFULL PERMISSIONS NONE;
 
+DEFINE FIELD era ON dict_translated_as TYPE record<dict_era> PERMISSIONS FULL;
+DEFINE FIELD grammar_type ON dict_translated_as TYPE record<dict_grammar> PERMISSIONS FULL;
 DEFINE FIELD in ON dict_translated_as TYPE record<dict_wordlist_egyptian> PERMISSIONS FULL;
+DEFINE FIELD language ON dict_translated_as TYPE record<dict_language> PERMISSIONS FULL;
 DEFINE FIELD out ON dict_translated_as TYPE record<dict_wordlist_en | dict_wordlist_fr | dict_wordlist_de> PERMISSIONS FULL;
 DEFINE FIELD transliteration ON dict_translated_as TYPE record<dict_transliterations> PERMISSIONS FULL;
 
@@ -77,10 +110,6 @@ DEFINE TABLE dict_wordlist_egyptian TYPE NORMAL SCHEMAFULL PERMISSIONS NONE;
 
 DEFINE FIELD glyphs_gardiner_res ON dict_wordlist_egyptian TYPE string PERMISSIONS FULL;
 DEFINE FIELD glyphs_unicode ON dict_wordlist_egyptian TYPE string PERMISSIONS FULL;
-DEFINE FIELD grammar_type ON dict_wordlist_egyptian TYPE record<dict_grammar> PERMISSIONS FULL;
-DEFINE FIELD literal_bi ON dict_wordlist_egyptian TYPE bool PERMISSIONS FULL;
-DEFINE FIELD literal_tri ON dict_wordlist_egyptian TYPE bool PERMISSIONS FULL;
-DEFINE FIELD literal_uni ON dict_wordlist_egyptian TYPE bool PERMISSIONS FULL;
 
 
 
@@ -277,7 +306,6 @@ DEFINE FIELD out ON glyph_ideogram_for TYPE record<dict_wordlist_egyptian> PERMI
 DEFINE TABLE glyph_phonogram_in TYPE RELATION IN glyph_hieroglyphs_all OUT dict_wordlist_egyptian SCHEMAFULL PERMISSIONS NONE;
 
 DEFINE FIELD dict_transliteration ON glyph_phonogram_in TYPE record<dict_transliterations> PERMISSIONS FULL;
-DEFINE FIELD glyph_transliteration ON glyph_phonogram_in TYPE record<glyph_transliteration> PERMISSIONS FULL;
 DEFINE FIELD in ON glyph_phonogram_in TYPE record<glyph_hieroglyphs_all> PERMISSIONS FULL;
 DEFINE FIELD out ON glyph_phonogram_in TYPE record<dict_wordlist_egyptian> PERMISSIONS FULL;
 
