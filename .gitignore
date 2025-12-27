@@ -1,3 +1,6 @@
+# dot-env
+app/src/.env
+
 # stoopid files
 .DS_Store
 
