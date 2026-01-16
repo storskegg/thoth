@@ -108,7 +108,8 @@ DEFINE FIELD term ON dict_wordlist_de TYPE string PERMISSIONS FULL;
 
 DEFINE TABLE dict_wordlist_egyptian TYPE NORMAL SCHEMAFULL PERMISSIONS NONE;
 
-DEFINE FIELD glyphs_gardiner_res ON dict_wordlist_egyptian TYPE string PERMISSIONS FULL;
+DEFINE FIELD glyphs_mdc ON dict_wordlist_egyptian TYPE string PERMISSIONS FULL;
+DEFINE FIELD glyphs_res ON dict_wordlist_egyptian TYPE string PERMISSIONS FULL;
 DEFINE FIELD glyphs_unicode ON dict_wordlist_egyptian TYPE string PERMISSIONS FULL;
 
 
@@ -220,10 +221,10 @@ DEFINE FIELD term ON glyph_determinatives TYPE string PERMISSIONS FULL;
 -- TABLE: glyph_grouped_by_shape
 -- ------------------------------
 
-DEFINE TABLE glyph_grouped_by_shape TYPE RELATION IN glyph_hieroglyphs_all OUT glyph_hieroglyph_groupings SCHEMALESS PERMISSIONS NONE;
+DEFINE TABLE glyph_grouped_by_shape TYPE RELATION IN glyph_hieroglyphs_all OUT glyph_groupings_shapes SCHEMAFULL PERMISSIONS NONE;
 
 DEFINE FIELD in ON glyph_grouped_by_shape TYPE record<glyph_hieroglyphs_all> PERMISSIONS FULL;
-DEFINE FIELD out ON glyph_grouped_by_shape TYPE record<glyph_hieroglyph_groupings> PERMISSIONS FULL;
+DEFINE FIELD out ON glyph_grouped_by_shape TYPE record<glyph_groupings_shapes> PERMISSIONS FULL;
 
 
 
@@ -236,10 +237,10 @@ DEFINE FIELD out ON glyph_grouped_by_shape TYPE record<glyph_hieroglyph_grouping
 -- TABLE: glyph_grouped_by_theme
 -- ------------------------------
 
-DEFINE TABLE glyph_grouped_by_theme TYPE RELATION IN glyph_hieroglyphs_all OUT glyph_hieroglyph_groupings SCHEMAFULL PERMISSIONS NONE;
+DEFINE TABLE glyph_grouped_by_theme TYPE RELATION IN glyph_hieroglyphs_all OUT glyph_groupings_gardiner SCHEMAFULL PERMISSIONS NONE;
 
 DEFINE FIELD in ON glyph_grouped_by_theme TYPE record<glyph_hieroglyphs_all> PERMISSIONS FULL;
-DEFINE FIELD out ON glyph_grouped_by_theme TYPE record<glyph_hieroglyph_groupings> PERMISSIONS FULL;
+DEFINE FIELD out ON glyph_grouped_by_theme TYPE record<glyph_groupings_gardiner> PERMISSIONS FULL;
 
 
 
@@ -249,18 +250,33 @@ DEFINE FIELD out ON glyph_grouped_by_theme TYPE record<glyph_hieroglyph_grouping
 
 
 -- ------------------------------
--- TABLE: glyph_hieroglyph_groupings
+-- TABLE: glyph_groupings_gardiner
 -- ------------------------------
 
-DEFINE TABLE glyph_hieroglyph_groupings TYPE NORMAL SCHEMAFULL PERMISSIONS NONE;
+DEFINE TABLE glyph_groupings_gardiner TYPE NORMAL SCHEMAFULL PERMISSIONS NONE;
 
-DEFINE FIELD name ON glyph_hieroglyph_groupings TYPE string PERMISSIONS FULL;
-DEFINE FIELD prefix ON glyph_hieroglyph_groupings TYPE string PERMISSIONS FULL;
+DEFINE FIELD name ON glyph_groupings_gardiner TYPE string PERMISSIONS FULL;
+DEFINE FIELD prefix ON glyph_groupings_gardiner TYPE string PERMISSIONS FULL;
 
 
 
 -- ------------------------------
--- TABLE DATA: glyph_hieroglyph_groupings
+-- TABLE DATA: glyph_groupings_gardiner
+-- ------------------------------
+
+
+-- ------------------------------
+-- TABLE: glyph_groupings_shapes
+-- ------------------------------
+
+DEFINE TABLE glyph_groupings_shapes TYPE NORMAL SCHEMAFULL PERMISSIONS NONE;
+
+DEFINE FIELD name ON glyph_groupings_shapes TYPE string PERMISSIONS FULL;
+
+
+
+-- ------------------------------
+-- TABLE DATA: glyph_groupings_shapes
 -- ------------------------------
 
 
@@ -336,9 +352,10 @@ DEFINE FIELD out ON glyph_regrouped_from TYPE record<glyph_grouped_by_theme> PER
 -- TABLE: glyph_transliterated_as
 -- ------------------------------
 
-DEFINE TABLE glyph_transliterated_as TYPE RELATION IN glyph_hieroglyphs_all OUT glyph_transliteration SCHEMALESS PERMISSIONS NONE;
+DEFINE TABLE glyph_transliterated_as TYPE RELATION IN glyph_hieroglyphs_all OUT glyph_transliteration SCHEMAFULL PERMISSIONS NONE;
 
 DEFINE FIELD in ON glyph_transliterated_as TYPE record<glyph_hieroglyphs_all> PERMISSIONS FULL;
+DEFINE FIELD n_lit ON glyph_transliterated_as TYPE int DEFAULT 1 PERMISSIONS FULL;
 DEFINE FIELD out ON glyph_transliterated_as TYPE record<glyph_transliteration> PERMISSIONS FULL;
 
 
@@ -354,6 +371,7 @@ DEFINE FIELD out ON glyph_transliterated_as TYPE record<glyph_transliteration> P
 
 DEFINE TABLE glyph_transliteration TYPE NORMAL SCHEMAFULL PERMISSIONS NONE;
 
+DEFINE FIELD leiden_unified ON glyph_transliteration TYPE string PERMISSIONS FULL;
 DEFINE FIELD umschrift ON glyph_transliteration TYPE string PERMISSIONS FULL;
 DEFINE FIELD unicode ON glyph_transliteration TYPE string PERMISSIONS FULL;
 
